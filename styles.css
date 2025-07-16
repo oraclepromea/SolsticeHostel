@@ -1287,6 +1287,19 @@ body {
         gap: 30px;
     }
 
+    .footer-logo {
+        align-items: center;
+    }
+
+    .footer-logo img {
+        width: 180px;
+        max-width: 200px;
+    }
+
+    .location-highlights {
+        justify-content: center;
+    }
+
     .rooms-grid {
         grid-template-columns: 1fr;
     }
@@ -1319,5 +1332,31 @@ body {
 
     .amenities-grid {
         grid-template-columns: 1fr;
+    }
+
+    .footer-logo img {
+        width: 160px;
+        max-width: 180px;
+    }
+
+    .main-tagline {
+        font-size: 1.1rem;
+    }
+
+    .sub-tagline {
+        font-size: 0.9rem;
+    }
+
+    .highlight {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+
+    .location-highlights {
+        gap: 8px;
+    }
+
+    .footer-content {
+        gap: 25px;
     }
 }
