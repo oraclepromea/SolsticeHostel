@@ -758,41 +758,51 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
+    align-items: stretch;
 }
 
 .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 25px;
+    height: 100%;
 }
 
 .contact-item {
     display: flex;
     align-items: flex-start;
     gap: 20px;
-    padding: 20px;
+    padding: 25px;
     background: var(--white);
     border-radius: var(--border-radius);
     box-shadow: 0 3px 15px var(--shadow);
+    flex: 1;
 }
 
 .contact-item i {
     font-size: 1.5rem;
     color: var(--primary-orange);
     margin-top: 5px;
+    min-width: 24px;
 }
 
 .contact-item h4 {
     font-size: 1.2rem;
     font-weight: var(--subheading-weight);
     color: var(--primary-green);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+}
+
+.contact-item p {
+    line-height: 1.6;
+    margin: 0;
 }
 
 .contact-additional {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 30px;
+    height: 100%;
 }
 
 .booking-info, .transport-info {
@@ -800,6 +810,7 @@ body {
     padding: 30px;
     border-radius: var(--border-radius);
     box-shadow: 0 5px 20px var(--shadow);
+    flex: 1;
 }
 
 .booking-info h3, .transport-info h3 {
@@ -847,6 +858,7 @@ body {
     font-size: 1.3rem;
     color: var(--primary-orange);
     margin-top: 5px;
+    min-width: 20px;
 }
 
 .transport-item h4 {
@@ -859,6 +871,7 @@ body {
 .transport-item p {
     color: var(--dark-gray);
     font-size: 0.95rem;
+    margin: 0;
 }
 
 /* Footer */
