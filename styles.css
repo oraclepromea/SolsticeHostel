@@ -159,10 +159,11 @@ body {
 }
 
 .hero-logo img {
-    height: 180px;
-    width: auto;
-    max-width: 900px;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    height: auto;
+    width: 200px;
+    max-width: 250px;
+    object-fit: contain;
+    filter: brightness(1.1);
     transition: all 0.3s ease;
 }
 
@@ -892,11 +893,20 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: flex-start;
 }
 
 .footer-logo img {
-    height: 60px;
-    width: auto;
+    height: auto;
+    width: 200px;
+    max-width: 250px;
+    object-fit: contain;
+    filter: brightness(1.1);
+    transition: all 0.3s ease;
+}
+
+.footer-logo img:hover {
+    transform: scale(1.05);
 }
 
 .footer-tagline {
