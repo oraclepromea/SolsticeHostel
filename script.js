@@ -157,37 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Form submission handler
-document.querySelector('.contact-form form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(this);
-    const name = this.querySelector('input[type="text"]').value;
-    const email = this.querySelector('input[type="email"]').value;
-    const subject = this.querySelectorAll('input[type="text"]')[1].value;
-    const message = this.querySelector('textarea').value;
-    
-    // Simple validation
-    if (!name || !email || !message) {
-        alert('Please fill in all required fields.');
-        return;
-    }
-    
-    // Simulate form submission
-    const submitBtn = this.querySelector('.submit-btn');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-    
-    setTimeout(() => {
-        alert('Thank you for your message! We will get back to you soon.');
-        this.reset();
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }, 2000);
-});
-
 // Book Now button handlers
 document.querySelectorAll('.book-btn').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -364,3 +333,460 @@ function addScrollToTop() {
 
 // Initialize scroll-to-top button
 document.addEventListener('DOMContentLoaded', addScrollToTop);
+
+// Auto-rotating Gallery Functionality
+let currentSlide = 0;
+let autoSlideInterval;
+
+// Breakfast Gallery Functionality
+let currentBreakfastSlide = 0;
+let breakfastAutoSlideInterval;
+
+// Amenities Gallery Functionality
+let currentAmenitiesSlide = 0;
+let amenitiesAutoSlideInterval;
+
+function showSlide(index, slides, dots) {
+    // Remove active class from all slides and dots
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    // Add active class to current slide and dot
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+    
+    currentSlide = index;
+}
+
+function showBreakfastSlide(index, breakfastSlides, breakfastDots) {
+    // Remove active class from all breakfast slides and dots
+    breakfastSlides.forEach(slide => slide.classList.remove('active'));
+    breakfastDots.forEach(dot => dot.classList.remove('active'));
+    
+    // Add active class to current breakfast slide and dot
+    breakfastSlides[index].classList.add('active');
+    breakfastDots[index].classList.add('active');
+    
+    currentBreakfastSlide = index;
+}
+
+function showAmenitiesSlide(index, amenitiesSlides, amenitiesDots) {
+    // Remove active class from all amenities slides and dots
+    amenitiesSlides.forEach(slide => slide.classList.remove('active'));
+    amenitiesDots.forEach(dot => dot.classList.remove('active'));
+    
+    // Add active class to current amenities slide and dot
+    amenitiesSlides[index].classList.add('active');
+    amenitiesDots[index].classList.add('active');
+    
+    currentAmenitiesSlide = index;
+}
+
+// Initialize auto-rotating galleries
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait a bit to ensure all elements are loaded
+    setTimeout(() => {
+        // Main gallery
+        const slides = document.querySelectorAll('.gallery-slide');
+        const dots = document.querySelectorAll('.dot');
+        
+        if (slides.length > 0) {
+            const nextSlide = () => {
+                const nextIndex = (currentSlide + 1) % slides.length;
+                showSlide(nextIndex, slides, dots);
+            };
+            
+            const startAutoSlide = () => {
+                autoSlideInterval = setInterval(nextSlide, 3000);
+            };
+            
+            const stopAutoSlide = () => {
+                clearInterval(autoSlideInterval);
+            };
+            
+            startAutoSlide();
+            
+            // Add click handlers to dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index, slides, dots);
+                    stopAutoSlide();
+                    setTimeout(startAutoSlide, 5000);
+                });
+            });
+            
+            // Pause auto-slide on hover
+            const gallery = document.querySelector('.auto-gallery');
+            if (gallery) {
+                gallery.addEventListener('mouseenter', stopAutoSlide);
+                gallery.addEventListener('mouseleave', startAutoSlide);
+            }
+        }
+        
+        // Breakfast gallery
+        const breakfastSlides = document.querySelectorAll('.breakfast-slide');
+        const breakfastDots = document.querySelectorAll('.breakfast-dot');
+        
+        console.log('Breakfast slides found:', breakfastSlides.length);
+        console.log('Breakfast dots found:', breakfastDots.length);
+        
+        if (breakfastSlides.length > 0) {
+            // Ensure first slide is active
+            breakfastSlides[0].classList.add('active');
+            if (breakfastDots.length > 0) {
+                breakfastDots[0].classList.add('active');
+            }
+            
+            const nextBreakfastSlide = () => {
+                const nextIndex = (currentBreakfastSlide + 1) % breakfastSlides.length;
+                showBreakfastSlide(nextIndex, breakfastSlides, breakfastDots);
+            };
+            
+            const startBreakfastAutoSlide = () => {
+                breakfastAutoSlideInterval = setInterval(nextBreakfastSlide, 3000);
+            };
+            
+            const stopBreakfastAutoSlide = () => {
+                clearInterval(breakfastAutoSlideInterval);
+            };
+            
+            startBreakfastAutoSlide();
+            
+            // Add click handlers to breakfast dots
+            breakfastDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showBreakfastSlide(index, breakfastSlides, breakfastDots);
+                    stopBreakfastAutoSlide();
+                    setTimeout(startBreakfastAutoSlide, 5000);
+                });
+            });
+            
+            // Pause auto-slide on hover
+            const breakfastGallery = document.querySelector('.breakfast-gallery');
+            if (breakfastGallery) {
+                breakfastGallery.addEventListener('mouseenter', stopBreakfastAutoSlide);
+                breakfastGallery.addEventListener('mouseleave', startBreakfastAutoSlide);
+            }
+        }
+        
+        // Amenities gallery
+        const amenitiesSlides = document.querySelectorAll('.amenities-slide');
+        const amenitiesDots = document.querySelectorAll('.amenities-dot');
+        
+        console.log('Amenities slides found:', amenitiesSlides.length);
+        console.log('Amenities dots found:', amenitiesDots.length);
+        
+        if (amenitiesSlides.length > 0) {
+            // Ensure first slide is active
+            amenitiesSlides[0].classList.add('active');
+            if (amenitiesDots.length > 0) {
+                amenitiesDots[0].classList.add('active');
+            }
+            
+            const nextAmenitiesSlide = () => {
+                const nextIndex = (currentAmenitiesSlide + 1) % amenitiesSlides.length;
+                showAmenitiesSlide(nextIndex, amenitiesSlides, amenitiesDots);
+            };
+            
+            const startAmenitiesAutoSlide = () => {
+                amenitiesAutoSlideInterval = setInterval(nextAmenitiesSlide, 3000);
+            };
+            
+            const stopAmenitiesAutoSlide = () => {
+                clearInterval(amenitiesAutoSlideInterval);
+            };
+            
+            startAmenitiesAutoSlide();
+            
+            // Add click handlers to amenities dots
+            amenitiesDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showAmenitiesSlide(index, amenitiesSlides, amenitiesDots);
+                    stopAmenitiesAutoSlide();
+                    setTimeout(startAmenitiesAutoSlide, 5000);
+                });
+            });
+            
+            // Pause auto-slide on hover
+            const amenitiesGallery = document.querySelector('.amenities-gallery');
+            if (amenitiesGallery) {
+                amenitiesGallery.addEventListener('mouseenter', stopAmenitiesAutoSlide);
+                amenitiesGallery.addEventListener('mouseleave', startAmenitiesAutoSlide);
+            }
+        }
+    }, 100);
+});
+
+// Language Switcher Functionality
+let currentLanguage = 'en';
+
+const translations = {
+    en: {
+        // Navigation
+        'home': 'Home',
+        'about': 'About',
+        'accommodations': 'Accommodations',
+        'amenities': 'Amenities',
+        'breakfast': 'Breakfast',
+        'attractions': 'Local Attractions',
+        'contact': 'Contact',
+        
+        // Hero Section
+        'hero-title': 'Welcome to Solstice Hostel',
+        'hero-subtitle': 'Your sunny home in beautiful Copacabana, Bolivia',
+        'hero-cta': 'Book Your Stay',
+        
+        // About Section
+        'about-title': 'About Solstice Hostel',
+        'about-subtitle': 'Experience the warmth of Bolivian hospitality in the heart of Copacabana',
+        'about-para1': 'Located in the vibrant town of Copacabana on the shores of Lake Titicaca, Solstice Hostel offers comfortable accommodations with a friendly atmosphere. Our hostel combines modern amenities with traditional Bolivian warmth, making it the perfect base for exploring this magical region.',
+        'about-para2': 'Whether you\'re here to visit the famous Isla del Sol, explore local markets, or simply relax by the lake, we provide everything you need for an unforgettable stay.',
+        'sunny-location': 'Sunny Location',
+        'sunny-desc': 'Perfect spot to enjoy Bolivia\'s beautiful weather',
+        'social-atmosphere': 'Social Atmosphere',
+        'social-desc': 'Meet fellow travelers from around the world',
+        'breakfast-included': 'Breakfast Included',
+        'breakfast-desc': 'Start your day with our delicious breakfast',
+        
+        // Accommodations
+        'accommodations-title': 'Accommodations',
+        'accommodations-subtitle': 'Comfortable rooms for every type of traveler',
+        'book-now': 'Book Now',
+        'tax-included': '(tax included)',
+        'sleeps': 'Sleeps',
+        'private-ensuite': 'Private Ensuite',
+        'shared-ensuite': 'Shared Ensuite',
+        'mixed-dorm': 'Mixed Dorm',
+        
+        // Breakfast
+        'breakfast-title': 'Breakfast Options',
+        'breakfast-subtitle': 'Start your day right with our delicious breakfast selection',
+        'included-stay': 'Included with Your Stay',
+        'breakfast-para': 'Wake up to a hearty breakfast that will fuel your adventures around Lake Titicaca. Our breakfast menu features a variety of local and international options to satisfy every palate.',
+        'breakfast-hours': 'Served daily from 7:00 AM to 10:00 AM in our sunny dining area',
+        
+        // Amenities
+        'amenities-title': 'Amenities & Facilities',
+        'amenities-subtitle': 'Everything you need for a comfortable and fun stay',
+        'games-entertainment': 'Games & Entertainment',
+        'social-areas': 'Social Areas',
+        'facilities-action': 'See Our Facilities in Action',
+        
+        // Attractions
+        'attractions-title': 'Local Attractions',
+        'attractions-subtitle': 'Discover the wonders of Copacabana and Lake Titicaca',
+        
+        // Contact
+        'contact-title': 'Contact Us',
+        'contact-subtitle': 'Get in touch for reservations and inquiries',
+        'address': 'Address',
+        'phone': 'Phone',
+        'email': 'Email',
+        'reception-hours': 'Reception Hours',
+        'available-24-7': '24/7 Available',
+        'ready-book': 'Ready to Book?',
+        'booking-desc': 'Reserve your stay at Solstice Hostel through our booking platform for the best rates and instant confirmation.',
+        'book-hostelworld': 'Book on Hostelworld',
+        'getting-here': 'Getting Here',
+        'from-la-paz': 'From La Paz',
+        'bus-service': 'Direct bus service available (3-4 hours)',
+        'from-terminal': 'From Bus Terminal',
+        'walk-hostel': '5-minute walk to hostel',
+        'boat-tours': 'Boat Tours',
+        'harbor-distance': 'Harbor is just 5 minutes away'
+    },
+    es: {
+        // Navigation
+        'home': 'Inicio',
+        'about': 'Acerca de',
+        'accommodations': 'Alojamiento',
+        'amenities': 'Servicios',
+        'breakfast': 'Desayuno',
+        'attractions': 'Atracciones Locales',
+        'contact': 'Contacto',
+        
+        // Hero Section
+        'hero-title': 'Bienvenidos a Solstice Hostel',
+        'hero-subtitle': 'Tu hogar soleado en la hermosa Copacabana, Bolivia',
+        'hero-cta': 'Reserva tu Estadía',
+        
+        // About Section
+        'about-title': 'Acerca de Solstice Hostel',
+        'about-subtitle': 'Experimenta la calidez de la hospitalidad boliviana en el corazón de Copacabana',
+        'about-para1': 'Ubicado en el vibrante pueblo de Copacabana a orillas del Lago Titicaca, Solstice Hostel ofrece alojamiento cómodo con un ambiente amigable. Nuestro hostal combina comodidades modernas con la calidez tradicional boliviana, siendo la base perfecta para explorar esta región mágica.',
+        'about-para2': 'Ya sea que vengas a visitar la famosa Isla del Sol, explorar mercados locales, o simplemente relajarte junto al lago, proporcionamos todo lo que necesitas para una estadía inolvidable.',
+        'sunny-location': 'Ubicación Soleada',
+        'sunny-desc': 'Lugar perfecto para disfrutar del hermoso clima de Bolivia',
+        'social-atmosphere': 'Ambiente Social',
+        'social-desc': 'Conoce viajeros de todo el mundo',
+        'breakfast-included': 'Desayuno Incluido',
+        'breakfast-desc': 'Comienza tu día con nuestro delicioso desayuno',
+        
+        // Accommodations
+        'accommodations-title': 'Alojamiento',
+        'accommodations-subtitle': 'Habitaciones cómodas para todo tipo de viajero',
+        'book-now': 'Reservar Ahora',
+        'tax-included': '(impuestos incluidos)',
+        'sleeps': 'Para',
+        'private-ensuite': 'Baño Privado',
+        'shared-ensuite': 'Baño Compartido',
+        'mixed-dorm': 'Dormitorio Mixto',
+        
+        // Breakfast
+        'breakfast-title': 'Opciones de Desayuno',
+        'breakfast-subtitle': 'Comienza tu día con nuestra deliciosa selección de desayunos',
+        'included-stay': 'Incluido con tu Estadía',
+        'breakfast-para': 'Despierta con un desayuno abundante que alimentará tus aventuras alrededor del Lago Titicaca. Nuestro menú de desayuno incluye una variedad de opciones locales e internacionales para satisfacer todos los gustos.',
+        'breakfast-hours': 'Servido diariamente de 7:00 AM a 10:00 AM en nuestro soleado comedor',
+        
+        // Amenities
+        'amenities-title': 'Servicios e Instalaciones',
+        'amenities-subtitle': 'Todo lo que necesitas para una estadía cómoda y divertida',
+        'games-entertainment': 'Juegos y Entretenimiento',
+        'social-areas': 'Áreas Sociales',
+        'facilities-action': 'Ve Nuestras Instalaciones en Acción',
+        
+        // Attractions
+        'attractions-title': 'Atracciones Locales',
+        'attractions-subtitle': 'Descubre las maravillas de Copacabana y el Lago Titicaca',
+        
+        // Contact
+        'contact-title': 'Contáctanos',
+        'contact-subtitle': 'Ponte en contacto para reservas y consultas',
+        'address': 'Dirección',
+        'phone': 'Teléfono',
+        'email': 'Correo',
+        'reception-hours': 'Horario de Recepción',
+        'available-24-7': 'Disponible 24/7',
+        'ready-book': '¿Listo para Reservar?',
+        'booking-desc': 'Reserva tu estadía en Solstice Hostel a través de nuestra plataforma de reservas para las mejores tarifas y confirmación instantánea.',
+        'book-hostelworld': 'Reservar en Hostelworld',
+        'getting-here': 'Cómo Llegar',
+        'from-la-paz': 'Desde La Paz',
+        'bus-service': 'Servicio directo de autobús disponible (3-4 horas)',
+        'from-terminal': 'Desde la Terminal',
+        'walk-hostel': 'Caminata de 5 minutos al hostal',
+        'boat-tours': 'Tours en Bote',
+        'harbor-distance': 'El puerto está a solo 5 minutos'
+    }
+};
+
+function switchLanguage(lang) {
+    currentLanguage = lang;
+    
+    // Update navigation links
+    document.querySelectorAll('.nav-link').forEach(link => {
+        const key = link.getAttribute('data-' + lang);
+        if (key) link.textContent = key;
+    });
+    
+    // Update hero section
+    const heroTitle = document.querySelector('.hero-content h1');
+    const heroSubtitle = document.querySelector('.hero-content p');
+    const heroCta = document.querySelector('.cta-button');
+    
+    if (heroTitle) heroTitle.textContent = translations[lang]['hero-title'];
+    if (heroSubtitle) heroSubtitle.textContent = translations[lang]['hero-subtitle'];
+    if (heroCta) heroCta.textContent = translations[lang]['hero-cta'];
+    
+    // Update section headers
+    const sectionHeaders = {
+        'about': ['about-title', 'about-subtitle'],
+        'accommodations': ['accommodations-title', 'accommodations-subtitle'],
+        'breakfast': ['breakfast-title', 'breakfast-subtitle'],
+        'amenities': ['amenities-title', 'amenities-subtitle'],
+        'attractions': ['attractions-title', 'attractions-subtitle'],
+        'contact': ['contact-title', 'contact-subtitle']
+    };
+    
+    Object.entries(sectionHeaders).forEach(([section, keys]) => {
+        const sectionEl = document.getElementById(section);
+        if (sectionEl) {
+            const h2 = sectionEl.querySelector('.section-header h2');
+            const p = sectionEl.querySelector('.section-header p');
+            if (h2) h2.textContent = translations[lang][keys[0]];
+            if (p) p.textContent = translations[lang][keys[1]];
+        }
+    });
+    
+    // Update about section content
+    const aboutParagraphs = document.querySelectorAll('.about-text p');
+    if (aboutParagraphs[0]) aboutParagraphs[0].textContent = translations[lang]['about-para1'];
+    if (aboutParagraphs[1]) aboutParagraphs[1].textContent = translations[lang]['about-para2'];
+    
+    // Update feature cards
+    const features = document.querySelectorAll('.feature');
+    const featureKeys = [
+        ['sunny-location', 'sunny-desc'],
+        ['social-atmosphere', 'social-desc'],
+        ['breakfast-included', 'breakfast-desc']
+    ];
+    
+    features.forEach((feature, index) => {
+        if (featureKeys[index]) {
+            const h3 = feature.querySelector('h3');
+            const p = feature.querySelector('p');
+            if (h3) h3.textContent = translations[lang][featureKeys[index][0]];
+            if (p) p.textContent = translations[lang][featureKeys[index][1]];
+        }
+    });
+    
+    // Update book now buttons
+    document.querySelectorAll('.book-btn').forEach(btn => {
+        btn.textContent = translations[lang]['book-now'];
+    });
+    
+    // Update tax notes
+    document.querySelectorAll('.tax-note').forEach(note => {
+        note.textContent = translations[lang]['tax-included'];
+    });
+    
+    // Update breakfast section
+    const breakfastH3 = document.querySelector('.breakfast-text h3');
+    const breakfastPara = document.querySelector('.breakfast-text p');
+    const breakfastNote = document.querySelector('.breakfast-note em');
+    
+    if (breakfastH3) breakfastH3.textContent = translations[lang]['included-stay'];
+    if (breakfastPara) breakfastPara.textContent = translations[lang]['breakfast-para'];
+    if (breakfastNote) breakfastNote.textContent = translations[lang]['breakfast-hours'];
+    
+    // Update amenities categories
+    const gamesH3 = document.querySelector('.amenities-category h3');
+    if (gamesH3 && gamesH3.textContent.includes('Games')) {
+        gamesH3.textContent = translations[lang]['games-entertainment'];
+    }
+    
+    // Update contact section
+    const contactItems = document.querySelectorAll('.contact-item h4');
+    const contactKeys = ['address', 'phone', 'email', 'reception-hours'];
+    contactItems.forEach((item, index) => {
+        if (contactKeys[index]) {
+            item.textContent = translations[lang][contactKeys[index]];
+        }
+    });
+    
+    // Update language button states
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-lang') === lang) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Update HTML lang attribute
+    document.documentElement.setAttribute('lang', lang);
+}
+
+// Initialize language switcher
+document.addEventListener('DOMContentLoaded', () => {
+    // Set English as default active
+    document.querySelector('.lang-btn[data-lang="en"]').classList.add('active');
+    
+    // Add click handlers to language buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.getAttribute('data-lang');
+            switchLanguage(lang);
+        });
+    });
+});

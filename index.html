@@ -12,17 +12,24 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <img src="images/Mesa de trabajo 2LOGO.jpeg" alt="Solstice Hostel Logo">
-            </div>
             <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#accommodations" class="nav-link">Accommodations</a>
-                <a href="#amenities" class="nav-link">Amenities</a>
-                <a href="#breakfast" class="nav-link">Breakfast</a>
-                <a href="#attractions" class="nav-link">Local Attractions</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#home" class="nav-link" data-en="Home" data-es="Inicio">Home</a>
+                <a href="#about" class="nav-link" data-en="About" data-es="Acerca de">About</a>
+                <a href="#accommodations" class="nav-link" data-en="Accommodations" data-es="Alojamiento">Accommodations</a>
+                <a href="#amenities" class="nav-link" data-en="Amenities" data-es="Servicios">Amenities</a>
+                <a href="#breakfast" class="nav-link" data-en="Breakfast" data-es="Desayuno">Breakfast</a>
+                <a href="#attractions" class="nav-link" data-en="Local Attractions" data-es="Atracciones Locales">Local Attractions</a>
+                <a href="#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contact</a>
+                <div class="language-switcher">
+                    <button class="lang-btn" data-lang="en" title="English">
+                        <span class="flag">🇺🇸</span>
+                        <span class="lang-text">EN</span>
+                    </button>
+                    <button class="lang-btn" data-lang="es" title="Español">
+                        <span class="flag">🇪🇸</span>
+                        <span class="lang-text">ES</span>
+                    </button>
+                </div>
             </div>
             <div class="nav-toggle" id="mobile-menu">
                 <span class="bar"></span>
@@ -35,6 +42,9 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
+            <div class="hero-logo">
+                <img src="images/Mesa de trabajo 2LOGO.png" alt="Solstice Hostel Logo">
+            </div>
             <h1>Welcome to Solstice Hostel</h1>
             <p>Your sunny home in beautiful Copacabana, Bolivia</p>
             <a href="#accommodations" class="cta-button">Book Your Stay</a>
@@ -50,10 +60,32 @@
                 <p>Experience the warmth of Bolivian hospitality in the heart of Copacabana</p>
             </div>
             <div class="about-content">
-                <div class="about-text">
-                    <p>Located in the vibrant town of Copacabana on the shores of Lake Titicaca, Solstice Hostel offers comfortable accommodations with a friendly atmosphere. Our hostel combines modern amenities with traditional Bolivian warmth, making it the perfect base for exploring this magical region.</p>
-                    <p>Whether you're here to visit the famous Isla del Sol, explore local markets, or simply relax by the lake, we provide everything you need for an unforgettable stay.</p>
+                <div class="about-left">
+                    <!-- Auto-rotating Image Gallery -->
+                    <div class="auto-gallery">
+                        <div class="gallery-container">
+                            <img src="images/First Photo.jpg" alt="Solstice Hostel Interior" class="gallery-slide active">
+                            <img src="images/_DSC7943.jpg" alt="Hostel Common Area" class="gallery-slide">
+                            <img src="images/_DSC7961.jpg" alt="Hostel Room" class="gallery-slide">
+                            <img src="images/20240523_122632.jpg" alt="Hostel Facilities" class="gallery-slide">
+                            <img src="images/Entrance Grand.jpg" alt="Hostel Entrance" class="gallery-slide">
+                            <div class="gallery-dots">
+                                <span class="dot active" data-slide="0"></span>
+                                <span class="dot" data-slide="1"></span>
+                                <span class="dot" data-slide="2"></span>
+                                <span class="dot" data-slide="3"></span>
+                                <span class="dot" data-slide="4"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- About Text -->
+                    <div class="about-text">
+                        <p>Located in the vibrant town of Copacabana on the shores of Lake Titicaca, Solstice Hostel offers comfortable accommodations with a friendly atmosphere. Our hostel combines modern amenities with traditional Bolivian warmth, making it the perfect base for exploring this magical region.</p>
+                        <p>Whether you're here to visit the famous Isla del Sol, explore local markets, or simply relax by the lake, we provide everything you need for an unforgettable stay.</p>
+                    </div>
                 </div>
+                
                 <div class="about-features">
                     <div class="feature">
                         <i class="fas fa-sun"></i>
@@ -72,43 +104,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Image Gallery -->
-            <div class="image-gallery">
-                <h3>Take a Look Around</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item" data-index="0">
-                        <img src="images/First Photo.jpg" alt="Solstice Hostel Interior" loading="lazy">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-expand"></i>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-index="1">
-                        <img src="images/_DSC7943.jpg" alt="Hostel Common Area" loading="lazy">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-expand"></i>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-index="2">
-                        <img src="images/_DSC7961.jpg" alt="Hostel Room" loading="lazy">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-expand"></i>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-index="3">
-                        <img src="images/20240523_122632.jpg" alt="Hostel Facilities" loading="lazy">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-expand"></i>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-index="4">
-                        <img src="images/Entrance Grand.jpg" alt="Hostel Entrance" loading="lazy">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-expand"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -123,7 +118,7 @@
                 <!-- Private Rooms -->
                 <div class="room-card">
                     <div class="room-image">
-                        <i class="fas fa-bed"></i>
+                        <img src="images/1 bedroom (main).jpg" alt="Standard Single Private Ensuite Room">
                     </div>
                     <div class="room-content">
                         <h3>Standard Single Private Ensuite</h3>
@@ -136,13 +131,13 @@
                             <span class="price">BOB 74.35</span>
                             <span class="tax-note">(tax included)</span>
                         </div>
-                        <button class="book-btn">Book Now</button>
+                        <a href="https://www.hostelworld.com/hostels/p/318246/solsticio-hostel/" target="_blank" class="book-btn">Book Now</a>
                     </div>
                 </div>
 
                 <div class="room-card">
                     <div class="room-image">
-                        <i class="fas fa-bed"></i>
+                        <img src="images/2 beds .jpeg" alt="Standard Double Bed Private Ensuite Room">
                     </div>
                     <div class="room-content">
                         <h3>Standard Double Bed Private Ensuite</h3>
@@ -155,13 +150,13 @@
                             <span class="price">BOB 108.55</span>
                             <span class="tax-note">(tax included)</span>
                         </div>
-                        <button class="book-btn">Book Now</button>
+                        <a href="https://www.hostelworld.com/hostels/p/318246/solsticio-hostel/" target="_blank" class="book-btn">Book Now</a>
                     </div>
                 </div>
 
                 <div class="room-card">
                     <div class="room-image">
-                        <i class="fas fa-bed"></i>
+                        <img src="images/Standard Twin Room.jpeg" alt="Standard Twin Room Private Ensuite">
                     </div>
                     <div class="room-content">
                         <h3>Standard Twin Room Private Ensuite</h3>
@@ -174,14 +169,14 @@
                             <span class="price">BOB 108.55</span>
                             <span class="tax-note">(tax included)</span>
                         </div>
-                        <button class="book-btn">Book Now</button>
+                        <a href="https://www.hostelworld.com/hostels/p/318246/solsticio-hostel/" target="_blank" class="book-btn">Book Now</a>
                     </div>
                 </div>
 
                 <!-- Dorm Beds -->
                 <div class="room-card dorm-card">
                     <div class="room-image">
-                        <i class="fas fa-bunk-bed"></i>
+                        <img src="images/Mixed Dorm Rooms.jpeg" alt="Standard 4 Bed Mixed Dorm Ensuite">
                     </div>
                     <div class="room-content">
                         <h3>Standard 4 Bed Mixed Dorm Ensuite</h3>
@@ -194,7 +189,7 @@
                             <span class="price">BOB 48.25</span>
                             <span class="tax-note">(tax included)</span>
                         </div>
-                        <button class="book-btn">Book Now</button>
+                        <a href="https://www.hostelworld.com/hostels/p/318246/solsticio-hostel/" target="_blank" class="book-btn">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -219,12 +214,24 @@
                         <li>Coffee, tea, and hot beverages</li>
                         <li>Vegetarian and dietary options available</li>
                     </ul>
-                    <p class="breakfast-note"><em>Pictures coming soon!</em></p>
+                    <p class="breakfast-note"><em>Served daily from 7:00 AM to 10:00 AM in our sunny dining area</em></p>
                 </div>
                 <div class="breakfast-image">
-                    <div class="placeholder-image">
-                        <i class="fas fa-utensils"></i>
-                        <p>Breakfast Photos<br>Coming Soon</p>
+                    <div class="breakfast-gallery">
+                        <div class="breakfast-container">
+                            <img src="images/Breakfast 1.jpg" alt="Fresh breakfast spread" class="breakfast-slide active">
+                            <img src="images/_DSC8267.jpg" alt="Traditional breakfast items" class="breakfast-slide">
+                            <img src="images/_DSC8279.jpg" alt="Fresh fruits and juice" class="breakfast-slide">
+                            <img src="images/_DSC8295.jpg" alt="Continental breakfast options" class="breakfast-slide">
+                            <img src="images/_DSC8270.jpg" alt="Breakfast beverages" class="breakfast-slide">
+                            <div class="breakfast-dots">
+                                <span class="breakfast-dot active" data-slide="0"></span>
+                                <span class="breakfast-dot" data-slide="1"></span>
+                                <span class="breakfast-dot" data-slide="2"></span>
+                                <span class="breakfast-dot" data-slide="3"></span>
+                                <span class="breakfast-dot" data-slide="4"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -278,6 +285,11 @@
                         <h4>Book Exchange</h4>
                         <p>Share and discover new reads</p>
                     </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h4>Tours/Travel Desk</h4>
+                        <p>Get help planning your local adventures</p>
+                    </div>
                 </div>
             </div>
 
@@ -299,6 +311,29 @@
                         <i class="fas fa-building"></i>
                         <h4>Social Balcony</h4>
                         <p>Outdoor space with beautiful views</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Amenities Gallery -->
+            <div class="amenities-category">
+                <h3>See Our Facilities in Action</h3>
+                <div class="amenities-gallery">
+                    <div class="amenities-container">
+                        <img src="images/DSC_0986.JPG" alt="Pool table and game room with Simpsons mural" class="amenities-slide active">
+                        <img src="images/_DSC7936.jpg" alt="Common area and social space" class="amenities-slide">
+                        <img src="images/Table Tennis.jpg" alt="Table tennis setup" class="amenities-slide">
+                        <img src="images/DSC_0964.JPG" alt="Card games and social activities" class="amenities-slide">
+                        <img src="images/_DSC8011.jpg" alt="Gaming area and entertainment" class="amenities-slide">
+                        <img src="images/Main photo.jpg" alt="Hostel exterior with clear view" class="amenities-slide">
+                        <div class="amenities-dots">
+                            <span class="amenities-dot active" data-slide="0"></span>
+                            <span class="amenities-dot" data-slide="1"></span>
+                            <span class="amenities-dot" data-slide="2"></span>
+                            <span class="amenities-dot" data-slide="3"></span>
+                            <span class="amenities-dot" data-slide="4"></span>
+                            <span class="amenities-dot" data-slide="5"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -374,7 +409,7 @@
                         <i class="fas fa-phone"></i>
                         <div>
                             <h4>Phone</h4>
-                            <p>+591 XXX XXXXX</p>
+                            <p>+591 77520065</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -392,23 +427,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <h3>Send us a Message</h3>
-                    <form>
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
+                <div class="contact-additional">
+                    <div class="booking-info">
+                        <h3>Ready to Book?</h3>
+                        <p>Reserve your stay at Solstice Hostel through our booking platform for the best rates and instant confirmation.</p>
+                        <a href="https://www.hostelworld.com/hostels/p/318246/solsticio-hostel/" target="_blank" class="booking-link">
+                            <i class="fas fa-bed"></i>
+                            Book on Hostelworld
+                        </a>
+                    </div>
+                    <div class="transport-info">
+                        <h3>Getting Here</h3>
+                        <div class="transport-item">
+                            <i class="fas fa-bus"></i>
+                            <div>
+                                <h4>From La Paz</h4>
+                                <p>Direct bus service available (3-4 hours)</p>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
+                        <div class="transport-item">
+                            <i class="fas fa-walking"></i>
+                            <div>
+                                <h4>From Bus Terminal</h4>
+                                <p>5-minute walk to hostel</p>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="Subject">
+                        <div class="transport-item">
+                            <i class="fas fa-ship"></i>
+                            <div>
+                                <h4>Boat Tours</h4>
+                                <p>Harbor is just 5 minutes away</p>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -419,7 +470,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="images/Mesa de trabajo 2LOGO.jpeg" alt="Solstice Hostel Logo">
+                    <img src="images/Mesa de trabajo 2LOGO.png" alt="Solstice Hostel Logo">
                     <p>Your sunny home in Copacabana, Bolivia</p>
                 </div>
                 <div class="footer-links">
